@@ -1,0 +1,10 @@
+<%- include("partials/header") %>
+<article class="post">
+  <h1><%= post.titulo %></h1>
+  <time datetime="<%= post.criadoEm %>"><%= data(post.criadoEm) %></time>
+  <% post.conteudo.split(/\n\s*\n/).forEach((paragrafo) => { %>
+    <p><%= paragrafo %></p>
+  <% }) %>
+  <a href="/">← Voltar para o início</a>
+</article>
+<%- include("partials/footer") %>

@@ -1,0 +1,11 @@
+<%- include("partials/header") %>
+<h1>Publicar artigo</h1>
+<% if (erro) { %><p class="erro" role="alert"><%= erro %></p><% } %>
+<form method="post" action="/publicar" class="formulario">
+  <label for="titulo">Título</label>
+  <input id="titulo" name="titulo" required minlength="3" value="<%= valores.titulo || '' %>">
+  <label for="conteudo">Conteúdo</label>
+  <textarea id="conteudo" name="conteudo" rows="10" required minlength="10"><%= valores.conteudo || '' %></textarea>
+  <button type="submit">Publicar</button>
+</form>
+<%- include("partials/footer") %>
