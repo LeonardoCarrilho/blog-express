@@ -2,6 +2,8 @@
 
 Blog pessoal renderizado no servidor com **Node.js, Express, EJS e MongoDB**.
 
+🔗 **Ao vivo:** https://blog-express-virid.vercel.app
+
 ## Funcionalidades
 - Páginas Início, Sobre, Contato e Publicar com layout compartilhado (partials do EJS)
 - Publicação de artigos com validação no servidor
