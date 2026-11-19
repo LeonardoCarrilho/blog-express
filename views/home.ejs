@@ -1,14 +1,25 @@
 <%- include("partials/header") %>
-<h1>Últimos artigos</h1>
 <% if (posts.length === 0) { %>
-  <p class="vazio">Nenhum artigo ainda. <a href="/publicar">Escreva o primeiro!</a></p>
-<% } %>
-<% posts.forEach((post) => { %>
-  <article class="cartao">
-    <h2><a href="/posts/<%= post.slug %>"><%= post.titulo %></a></h2>
-    <time datetime="<%= post.criadoEm %>"><%= data(post.criadoEm) %></time>
-    <p><%= resumo(post.conteudo) %></p>
-    <a class="leia-mais" href="/posts/<%= post.slug %>">Leia mais →</a>
+  <h1>Últimos artigos</h1>
+  <p class="vazio">Nenhum artigo ainda. <a href="/publicar">Escreva o primeiro.</a></p>
+<% } else { const [capa, ...resto] = posts; %>
+  <article class="capa">
+    <time datetime="<%= capa.criadoEm %>"><%= data(capa.criadoEm) %></time>
+    <h1><a href="/posts/<%= capa.slug %>"><%= capa.titulo %></a></h1>
+    <p><%= resumo(capa.conteudo, 260) %></p>
+    <a class="leia-mais" href="/posts/<%= capa.slug %>">Leia mais</a>
   </article>
-<% }) %>
+  <% if (resto.length) { %>
+    <h2 class="secao">Mais do diário</h2>
+    <div class="grade">
+      <% resto.forEach((post) => { %>
+        <article class="cartao">
+          <time datetime="<%= post.criadoEm %>"><%= data(post.criadoEm) %></time>
+          <h3><a href="/posts/<%= post.slug %>"><%= post.titulo %></a></h3>
+          <p><%= resumo(post.conteudo) %></p>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+<% } %>
 <%- include("partials/footer") %>
